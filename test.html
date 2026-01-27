@@ -25,12 +25,12 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between; /* 🔥 TOP + BOTTOM */
 }
 
 #logo {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 16px;
 }
 
 .side-btn {
@@ -41,7 +41,6 @@ body {
   cursor: pointer;
   text-align: center;
   font-weight: 600;
-  margin-bottom: 10px;
 }
 
 .side-btn:hover { background: #eef2ff; }
@@ -183,7 +182,10 @@ button.send {
 <!-- ===== Sidebar ===== -->
 <div id="sidebar">
   <div id="logo">🎓 EduMentor AI</div>
-  <div class="side-btn" onclick="newChat()">➕ New chat</div>
+
+  <div>
+    <div class="side-btn" onclick="newChat()">➕ New chat</div>
+  </div>
 </div>
 
 <!-- ===== Main ===== -->
@@ -221,7 +223,6 @@ const ENDPOINT = "https://1d284f9d38ad.ngrok-free.app/ask";
 const chat = document.getElementById("chat");
 const q = document.getElementById("q");
 
-/* Add message bubble */
 function add(text, cls){
   const div = document.createElement("div");
   div.className = "msg " + cls;
@@ -230,13 +231,11 @@ function add(text, cls){
   chat.scrollTop = chat.scrollHeight;
 }
 
-/* New chat (REAL RESET) */
 function newChat(){
   chat.innerHTML = "";
   add("👋 Welcome to EduMentor AI.\nAsk any academic or exam question to begin.", "bot");
 }
 
-/* Send */
 async function send(){
   const text = q.value.trim();
   if(!text) return;
@@ -267,7 +266,6 @@ async function send(){
   }
 }
 
-/* Enter key */
 q.addEventListener("keydown", e=>{
   if(e.key === "Enter" && !e.shiftKey){
     e.preventDefault();
@@ -275,11 +273,9 @@ q.addEventListener("keydown", e=>{
   }
 });
 
-/* Login modal */
 function openLogin(){ document.getElementById("loginModal").style.display="flex"; }
 function closeLogin(){ document.getElementById("loginModal").style.display="none"; }
 
-/* Start fresh */
 newChat();
 </script>
 
