@@ -25,7 +25,6 @@ body {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
 #logo {
@@ -33,9 +32,13 @@ body {
   font-weight: 700;
 }
 
+#sidebarBottom {
+  margin-top: auto;
+}
+
 #newChatBtn {
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 14px;
   border: 1px solid #e5e7eb;
   background: #f8fafc;
   cursor: pointer;
@@ -132,7 +135,7 @@ button.send {
   color:white;
   border:none;
   border-radius:14px;
-  padding:0 16px;
+  padding:0 18px;
   font-size:14px;
   cursor:pointer;
   height:52px;
@@ -183,7 +186,10 @@ button.send {
 <!-- ===== Sidebar ===== -->
 <div id="sidebar">
   <div id="logo">🎓 EduMentor AI</div>
-  <div id="newChatBtn" onclick="newChat()">➕ New chat</div>
+
+  <div id="sidebarBottom">
+    <div id="newChatBtn" onclick="newChat()">➕ New chat</div>
+  </div>
 </div>
 
 <!-- ===== Main ===== -->
