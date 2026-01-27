@@ -30,7 +30,7 @@ body {
 #logo {
   font-size: 20px;
   font-weight: 700;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 #newChatBtn {
@@ -44,6 +44,22 @@ body {
 }
 
 #newChatBtn:hover { background: #eef2ff; }
+
+#sidebarBottom{
+  margin-top:auto;
+}
+
+#loginSide{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:none;
+  background:#2563eb;
+  color:white;
+  font-size:15px;
+  font-weight:600;
+  cursor:pointer;
+}
 
 /* ===== Main ===== */
 #main {
@@ -127,17 +143,6 @@ button.send {
   height: 52px;
 }
 
-.login-mini{
-  background:#2563eb;
-  color:white;
-  border:none;
-  border-radius:14px;
-  padding:0 18px;
-  font-size:14px;
-  cursor:pointer;
-  height:52px;
-}
-
 /* ===== Login Modal ===== */
 #loginModal {
   position: fixed;
@@ -182,8 +187,14 @@ button.send {
 
 <!-- ===== Sidebar ===== -->
 <div id="sidebar">
-  <div id="logo">🎓 EduMentor AI</div>
-  <div id="newChatBtn" onclick="newChat()">➕ New chat</div>
+  <div>
+    <div id="logo">🎓 EduMentor AI</div>
+    <div id="newChatBtn" onclick="newChat()">➕ New chat</div>
+  </div>
+
+  <div id="sidebarBottom">
+    <button id="loginSide" onclick="openLogin()">Login</button>
+  </div>
 </div>
 
 <!-- ===== Main ===== -->
@@ -195,7 +206,6 @@ button.send {
 
   <div id="inputBar">
     <div id="inputWrap">
-      <button class="login-mini" onclick="openLogin()">Login</button>
       <textarea id="q" placeholder="Ask anything about your studies..."></textarea>
       <button class="send" onclick="send()">➤</button>
     </div>
@@ -279,3 +289,4 @@ newChat();
 
 </body>
 </html>
+
