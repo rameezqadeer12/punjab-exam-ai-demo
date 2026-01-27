@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Punjab Exam AI</title>
+<title>EduMentor AI – Smart Learning Assistant</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -11,8 +11,8 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
-  background: #0f172a;
-  color: #e5e7eb;
+  background: #ffffff;
+  color: #0f172a;
   height: 100vh;
   display: flex;
 }
@@ -20,30 +20,31 @@ body {
 /* ============ SIDEBAR ============ */
 #sidebar {
   width: 260px;
-  background: #020617;
-  border-right: 1px solid #1e293b;
-  padding: 15px;
+  background: #f8fafc;
+  border-right: 1px solid #e5e7eb;
+  padding: 14px;
   display: flex;
   flex-direction: column;
 }
 
-#sidebar h2 {
-  margin: 0 0 15px 0;
+#brand {
+  font-weight: 700;
   font-size: 18px;
+  margin-bottom: 14px;
 }
 
-.side-item {
+#newChat {
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  margin-bottom: 6px;
-  background: #020617;
-  border: 1px solid #1e293b;
+  border: 1px solid #e5e7eb;
+  background: white;
+  text-align: center;
+  font-weight: 600;
 }
 
-.side-item:hover {
-  background: #020617;
-  border-color: #334155;
+#newChat:hover {
+  background: #f1f5f9;
 }
 
 /* ============ MAIN ============ */
@@ -51,6 +52,7 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: #ffffff;
 }
 
 /* Header */
@@ -58,80 +60,90 @@ body {
   padding: 14px;
   text-align: center;
   font-weight: 600;
-  background: #020617;
-  border-bottom: 1px solid #1e293b;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 /* Chat area */
 #chat {
   flex: 1;
   overflow-y: auto;
-  padding: 25px;
+  padding: 30px;
+}
+
+.center-text {
+  text-align: center;
+  margin-top: 120px;
+  color: #64748b;
+  font-size: 26px;
 }
 
 /* Messages */
 .msg {
-  max-width: 720px;
-  margin: 0 auto 18px auto;
+  max-width: 760px;
+  margin: 0 auto 20px auto;
   padding: 14px 16px;
-  border-radius: 12px;
-  line-height: 1.5;
+  border-radius: 14px;
+  line-height: 1.6;
   white-space: pre-wrap;
+  font-size: 15px;
 }
 
 .user {
-  background: #1d4ed8;
-  align-self: flex-end;
+  background: #f1f5f9;
 }
 
 .bot {
-  background: #020617;
-  border: 1px solid #1e293b;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
 }
 
 /* Input bar */
 #inputBar {
-  padding: 15px;
-  background: #020617;
-  border-top: 1px solid #1e293b;
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
   display: flex;
   justify-content: center;
+  background: white;
 }
 
 #inputWrap {
   width: 100%;
   max-width: 760px;
   display: flex;
+  align-items: center;
   gap: 10px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 26px;
+  padding: 8px 12px;
 }
 
 textarea {
   flex: 1;
   resize: none;
-  height: 52px;
-  border-radius: 10px;
-  border: 1px solid #1e293b;
-  background: #020617;
-  color: white;
-  padding: 12px;
+  height: 36px;
+  border: none;
+  background: transparent;
   font-size: 15px;
   outline: none;
+  font-family: inherit;
 }
 
 button {
-  background: #22c55e;
+  background: #10b981;
   border: none;
-  border-radius: 10px;
-  padding: 0 18px;
-  font-size: 15px;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 14px;
   cursor: pointer;
+  color: white;
 }
 
 button:hover { opacity: 0.9; }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
 </style>
 </head>
 
@@ -139,40 +151,45 @@ button:hover { opacity: 0.9; }
 
 <!-- ============ SIDEBAR ============ -->
 <div id="sidebar">
-  <h2>🎓 Punjab Exam AI</h2>
-  <div class="side-item">➕ New Chat</div>
-  <div class="side-item">📘 Physics</div>
-  <div class="side-item">🧮 Math</div>
-  <div class="side-item">🧪 Chemistry</div>
-  <div class="side-item">📜 History</div>
+  <div id="brand">🎓 EduMentor AI</div>
+  <div id="newChat" onclick="newChat()">➕ New chat</div>
 </div>
 
 <!-- ============ MAIN ============ -->
 <div id="main">
 
-  <div id="header">Punjab Exam AI – Smart Learning Assistant</div>
+  <div id="header">EduMentor AI – Smart Learning Assistant</div>
 
-  <div id="chat"></div>
+  <div id="chat">
+    <div id="center" class="center-text">What are you working on?</div>
+  </div>
 
   <div id="inputBar">
     <div id="inputWrap">
-      <textarea id="q" placeholder="Ask your question..."></textarea>
-      <button onclick="send()">Send</button>
+      <textarea id="q" placeholder="Ask anything about your studies..."></textarea>
+      <button onclick="send()">➤</button>
     </div>
   </div>
 
 </div>
 
 <script>
-// 🔐 API KEY HIDDEN
+// 🔐 API hidden
 const API_KEY = "rameez-secret-key-2026";
 const ENDPOINT = "https://e9bc3c9e2b78.ngrok-free.app/ask";
 
 const chat = document.getElementById("chat");
 const q = document.getElementById("q");
+const center = document.getElementById("center");
 
-/* Add message bubble */
+/* New chat */
+function newChat(){
+  chat.innerHTML = '<div id="center" class="center-text">What are you working on?</div>';
+}
+
+/* Add message */
 function add(text, cls){
+  if(center) center.remove();
   const div = document.createElement("div");
   div.className = "msg " + cls;
   div.textContent = text;
@@ -187,7 +204,6 @@ async function send(){
 
   add(text, "user");
   q.value = "";
-
   add("Thinking...", "bot");
 
   try {
@@ -224,11 +240,7 @@ q.addEventListener("keydown", e=>{
     send();
   }
 });
-
-/* Welcome message */
-add("👋 Welcome to Punjab Exam AI.\nAsk any exam question to begin.", "bot");
 </script>
 
 </body>
 </html>
-
